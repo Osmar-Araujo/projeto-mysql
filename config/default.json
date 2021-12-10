@@ -1,0 +1,8 @@
+{
+    "mysql":{
+        "banco-de-dados": "les",
+        "usuario": "root",
+        "senha": "root",
+        "host": "127.0.0.1"
+    }
+}
