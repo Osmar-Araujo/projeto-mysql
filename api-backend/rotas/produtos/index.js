@@ -3,9 +3,9 @@ const roteador = require ('express').Router();
 
 
 roteador.use('/', async(req, res) => {
-    const products = await TabelaProdutos.listar;
+    const products = await TabelaProdutos.listar();
     res.send(
-        JSON.parse(products)
+        JSON.stringify(products)
     );
 });
 
