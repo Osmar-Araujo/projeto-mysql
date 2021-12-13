@@ -17,6 +17,26 @@ roteador.post('/', async (req,res) => {
     res.send(
         JSON.stringify(product)
     )
+});
+
+roteador.get('/:id', async (req, res) => {
+    
+    try{
+        const id = req.params.id
+        const productId = new Produto({id:id})
+        await productId.carregar()
+        res.send(
+        JSON.stringify(productId)
+        )
+    }catch(erro){
+        res.send(
+            JSON.stringify({
+                mensagem: erro.message
+            })
+        )
+    }   
+
 })
+
 
 module.exports = roteador;

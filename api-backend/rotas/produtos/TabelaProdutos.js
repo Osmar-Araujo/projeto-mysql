@@ -7,5 +7,19 @@ module.exports = {
 
     inserir(product){
         return Modelo.create(product);
+    },
+
+    async buscaPorId (id){
+        const encontrado = await Modelo.findOne({
+            where: {
+                id:id
+            }
+        })
+
+        if (!encontrado){
+            throw new Error ('Ops!! Produto não encontrado!!')
+        }
+        console.log(encontrado)
+        return encontrado;
     }
 }

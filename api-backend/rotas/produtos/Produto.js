@@ -29,6 +29,19 @@ class Produto{
 
         this.id = resultado.id
     }
+
+    async carregar(){
+        const prodFound = await TabelaProduto.buscaPorId(this.id)
+        this.name = prodFound.name
+        this.category = prodFound.category
+        this.image = prodFound.image
+        this.price = prodFound.price
+        this.countInStock = prodFound.countInStock
+        this.brand = prodFound.brand
+        this.rating = prodFound.rating
+        this.numReviews = prodFound.numReviews
+        this.description = prodFound.description
+    }
 }
 
 module.exports = Produto;
