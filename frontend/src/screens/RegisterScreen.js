@@ -7,6 +7,10 @@ import MessageBox from '../components/boxes/MessageBox';
 
 export default function RegisterScreen(props) {
   const [name, setName] = useState('');
+  const [dtNasc, setDtNasc] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [tel, setTel] = useState('');
+  const [tipoTel, setTipoTel] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -22,9 +26,9 @@ export default function RegisterScreen(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert('Password and confirm password are not match');
+      alert('A senha e a confirmação da senha estão diferentes');
     } else {
-      dispatch(register(name, email, password));
+      dispatch(register(name, dtNasc, cpf, tipoTel, tel, email, password));
     }
   };
   useEffect(() => {
@@ -48,6 +52,56 @@ export default function RegisterScreen(props) {
             placeholder="Entre com seu nome"
             required
             onChange={(e) => setName(e.target.value)}
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="dtNasc">Data de nascimento</label>
+          <input
+            type="date"
+            id="dtNasc"
+            required
+            onChange={(e) => setDtNasc(e.target.value)}
+            ></input>
+          </div>
+          <div>
+            <label htmlFor="genero">Gênero</label>
+            <select
+            id="genero"
+            required
+            onChange={(e) => setTipoTel(e.target.value)}>
+            <option>Masculino</option>
+            <option>Feminino</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="cpf">CPF</label>
+          <input
+            type="text"
+            id="cpf"
+            placeholder="Entre com seu cpf"
+            required
+            onChange={(e) => setCpf(e.target.value)}
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="tipoTel">Tipo de telefone</label>
+          <select
+            id="tipoTel"
+            required
+            onChange={(e) => setTipoTel(e.target.value)}>
+            <option>Celular</option>
+            <option>Residencial</option>
+            <option>Comercial</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="tel">Telefone</label>
+          <input
+            type="text"
+            id="tel"
+            placeholder="Entre com seu telefone"
+            required
+            onChange={(e) => setTel(e.target.value)}
           ></input>
         </div>
         <div>
