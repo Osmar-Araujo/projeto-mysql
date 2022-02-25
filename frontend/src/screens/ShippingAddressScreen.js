@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from "../actions/cartActions";
 import CheckoutSteps from "../components/checkoutSteps/CheckoutSteps";
+import { useForm } from 'react-hook-form';
 
 export default function ShippingAddressScreen(props) {
     const userSignin = useSelector ((state) => state.userSignin);
@@ -16,12 +17,30 @@ export default function ShippingAddressScreen(props) {
     const [city, setCity] = useState(shippingAddress.city);
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
     const [state, setState] = useState(shippingAddress.state);
+    const [numero, setNumero] = useState(shippingAddress.numero)
+    const [bairro, setBairro] = useState(shippingAddress.bairro)
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(saveShippingAddress({ fullName, address, city, postalCode, state }));
+        dispatch(saveShippingAddress({ fullName, address, city, postalCode, state, numero, bairro }));
         props.history.push('/payment');
     }
+    
+    const{setValue, setFocus} = useForm();
+    const checkCEP = (e) =>{
+      const cep = e.target.value.replace(/\D/g,'');
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      setValue('address', data.logradouro);
+      setValue('city', data.city);
+      setValue('postalCode', data.cep);
+      setValue('state', data.uf);
+      //setFocus('numero')
+      });
+    }
+
   return (
     <div>
       <CheckoutSteps step1 step2></CheckoutSteps>
@@ -40,7 +59,18 @@ export default function ShippingAddressScreen(props) {
           />
         </div>
         <div>
-          <label htmlFor="address">Endereço</label>
+          <label htmlFor="postalCode">CEP</label>
+          <input
+            type="text"
+            id="postalCode"
+            placeholder="Entre com o CEP"
+            value={postalCode}
+            onBlur={checkCEP}
+            onChange={(e) => setPostalCode(e.target.value)} required
+          />
+        </div>
+        <div>
+          <label htmlFor="address">Logradouro</label>
           <input
             type="text"
             id="address"
@@ -50,23 +80,33 @@ export default function ShippingAddressScreen(props) {
           />
         </div>
         <div>
-          <label htmlFor="city">Nome Completo</label>
+          <label htmlFor="numero">Número</label>
+          <input
+            type="text"
+            id="numero"
+            placeholder="Entre com o número da residência"
+            value={numero}
+            onChange={(e) => setNumero(e.target.value)} required
+          />
+        </div>
+        <div>
+          <label htmlFor="bairro">Bairro</label>
+          <input
+            type="text"
+            id="bairro"
+            placeholder="Entre com o bairro da residência"
+            value={bairro}
+            onChange={(e) => setBairro(e.target.value)} required
+          />
+        </div>
+        <div>
+          <label htmlFor="city">Cidade</label>
           <input
             type="text"
             id="city"
             placeholder="Entre com a cidade"
             value={city}
             onChange={(e) => setCity(e.target.value)} required
-          />
-        </div>
-        <div>
-          <label htmlFor="postalCode">CEP</label>
-          <input
-            type="text"
-            id="postalCode"
-            placeholder="Entre com o CEP"
-            value={postalCode}
-            onChange={(e) => setPostalCode(e.target.value)} required
           />
         </div>
         <div>

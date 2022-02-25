@@ -26,7 +26,6 @@ class Produto{
             numReviews: this.numReviews,
             description: this.description
         })
-
         this.id = resultado.id
     }
 
