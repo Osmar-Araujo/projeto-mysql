@@ -8,6 +8,7 @@ import MessageBox from '../components/boxes/MessageBox';
 export default function RegisterScreen(props) {
   const [name, setName] = useState('');
   const [dtNasc, setDtNasc] = useState('');
+  const [genero, setGenero] = useState('');
   const [cpf, setCpf] = useState('');
   const [tel, setTel] = useState('');
   const [tipoTel, setTipoTel] = useState('');
@@ -28,7 +29,7 @@ export default function RegisterScreen(props) {
     if (password !== confirmPassword) {
       alert('A senha e a confirmação da senha estão diferentes');
     } else {
-      dispatch(register(name, dtNasc, cpf, tipoTel, tel, email, password));
+      dispatch(register(name, dtNasc, genero, cpf, tipoTel, tel, email, password));
     }
   };
   useEffect(() => {
@@ -68,9 +69,9 @@ export default function RegisterScreen(props) {
             <select
             id="genero"
             required
-            onChange={(e) => setTipoTel(e.target.value)}>
-            <option>Masculino</option>
-            <option>Feminino</option>
+            onChange={(e) => setGenero(e.target.value)}>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
           </select>
         </div>
         <div>
@@ -86,12 +87,12 @@ export default function RegisterScreen(props) {
         <div>
           <label htmlFor="tipoTel">Tipo de telefone</label>
           <select
-            id="tipoTel"
+            id="tipoTel"  
             required
             onChange={(e) => setTipoTel(e.target.value)}>
-            <option>Celular</option>
-            <option>Residencial</option>
-            <option>Comercial</option>
+            <option value="Celular">Celular</option>
+          <option value="Residencial">Residencial</option>
+            <option value="Comercial">Comercial</option>
           </select>
         </div>
         <div>

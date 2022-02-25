@@ -1,4 +1,8 @@
-const ModeloTabela = require('../rotas/produtos/ModeloTabelaProdutos');
+const ModeloTabelaProd = require('../rotas/produtos/ModeloTabelaProdutos');
+const ModeloTabelaUsu = require('../rotas/usuarios/ModeloTabelaUsuarios');
 
-ModeloTabela.sync().then(() => console.log('Tabela criada com sucesso!')).catch(console.log);
+ModeloTabelaProd.sync().then(() => console.log('Tabela de produtos criada com sucesso!')).catch(console.log);
+
+ModeloTabelaUsu.sync().then(() => console.log('Tabela de usuários criada com sucesso!')).catch(console.log);
+
 
