@@ -17,13 +17,16 @@ export default function ShippingAddressScreen(props) {
     const [city, setCity] = useState(shippingAddress.city);
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
     const [state, setState] = useState(shippingAddress.state);
+    const [numero, setNumero] = useState(shippingAddress.numero)
+    const [bairro, setBairro] = useState(shippingAddress.bairro)
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(saveShippingAddress({ fullName, address, city, postalCode, state }));
+        dispatch(saveShippingAddress({ fullName, address, city, postalCode, state, numero, bairro }));
         props.history.push('/payment');
     }
-    const{setValue} = useForm();
+    
+    const{setValue, setFocus} = useForm();
     const checkCEP = (e) =>{
       const cep = e.target.value.replace(/\D/g,'');
       fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -33,7 +36,8 @@ export default function ShippingAddressScreen(props) {
       setValue('address', data.logradouro);
       setValue('city', data.city);
       setValue('postalCode', data.cep);
-      setValue('state', data.uf)
+      setValue('state', data.uf);
+      //setFocus('numero')
       });
     }
 
@@ -55,13 +59,44 @@ export default function ShippingAddressScreen(props) {
           />
         </div>
         <div>
-          <label htmlFor="address">Endereço</label>
+          <label htmlFor="postalCode">CEP</label>
+          <input
+            type="text"
+            id="postalCode"
+            placeholder="Entre com o CEP"
+            value={postalCode}
+            onBlur={checkCEP}
+            onChange={(e) => setPostalCode(e.target.value)} required
+          />
+        </div>
+        <div>
+          <label htmlFor="address">Logradouro</label>
           <input
             type="text"
             id="address"
             placeholder="Entre com o seu endereço"
             value={address}
             onChange={(e) => setAddress(e.target.value)} required
+          />
+        </div>
+        <div>
+          <label htmlFor="numero">Número</label>
+          <input
+            type="text"
+            id="numero"
+            placeholder="Entre com o número da residência"
+            value={numero}
+            onChange={(e) => setNumero(e.target.value)} required
+          />
+        </div>
+        <div>
+          <label htmlFor="bairro">Bairro</label>
+          <input
+            type="text"
+            id="bairro"
+            placeholder="Entre com o bairro da residência"
+            value={bairro}
+            onChange={(e) => setBairro(e.target.value)} required
           />
         </div>
         <div>
@@ -72,17 +107,6 @@ export default function ShippingAddressScreen(props) {
             placeholder="Entre com a cidade"
             value={city}
             onChange={(e) => setCity(e.target.value)} required
-          />
-        </div>
-        <div>
-          <label htmlFor="postalCode">CEP</label>
-          <input
-            type="text"
-            id="postalCode"
-            placeholder="Entre com o CEP"
-            value={postalCode}
-            onBlur={checkCEP}
-            onChange={(e) => setPostalCode(e.target.value)} required
           />
         </div>
         <div>
