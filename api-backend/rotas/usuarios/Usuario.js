@@ -1,7 +1,8 @@
+//const bcrypt = require ('bcryptjs');
 const TabelaUsuarios = require('./TabelaUsuarios');
 
 class Usuario{
-    constructor({id, name, dtNasc, genero, cpf, tipoTel, tel, email, password}){
+    constructor({id, name, dtNasc, genero, cpf, tipoTel, tel, email, password, isAdmin}){
         this.id = id
         this.name = name
         this.dtNasc = dtNasc
@@ -11,6 +12,7 @@ class Usuario{
         this.tel = tel
         this.email = email
         this.password = password
+        this.isAdmin = isAdmin
     }
 
     async criar(){
@@ -22,10 +24,11 @@ class Usuario{
             tipoTel: this.tipoTel,
             tel: this.tel,
             email: this.email,
-            password: this.password
+            password: this.password,
+            isAdmin: this.isAdmin
         })
         this.id = resultado.id
     }
 }
 
-module.exports = Usuario
+module.exports = Usuario;
