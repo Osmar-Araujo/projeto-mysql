@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from "../actions/cartActions";
 import CheckoutSteps from "../components/checkoutSteps/CheckoutSteps";
-import { useForm } from 'react-hook-form';
+//import { useForm } from 'react-hook-form';
 
 export default function ShippingAddressScreen(props) {
     const userSignin = useSelector ((state) => state.userSignin);
@@ -25,8 +25,9 @@ export default function ShippingAddressScreen(props) {
         dispatch(saveShippingAddress({ fullName, address, city, postalCode, state, numero, bairro }));
         props.history.push('/payment');
     }
-    
-    const{setValue, setFocus} = useForm();
+
+    /*
+    const{setValue} = useForm();
     const checkCEP = (e) =>{
       const cep = e.target.value.replace(/\D/g,'');
       fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -37,9 +38,10 @@ export default function ShippingAddressScreen(props) {
       setValue('city', data.city);
       setValue('postalCode', data.cep);
       setValue('state', data.uf);
-      //setFocus('numero')
+      setFocus('numero')
       });
     }
+    */
 
   return (
     <div>
@@ -65,7 +67,7 @@ export default function ShippingAddressScreen(props) {
             id="postalCode"
             placeholder="Entre com o CEP"
             value={postalCode}
-            onBlur={checkCEP}
+            //onBlur={checkCEP}
             onChange={(e) => setPostalCode(e.target.value)} required
           />
         </div>

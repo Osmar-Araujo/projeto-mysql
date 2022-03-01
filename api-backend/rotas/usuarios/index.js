@@ -1,6 +1,8 @@
+const { compareSync } = require('bcryptjs');
 const TabelaUsuarios = require('./TabelaUsuarios');
 const roteador = require ('express').Router();
-const Usuario = require('./Usuario');
+const Usuario = require('./Usuario.js');
+const expressAsyncHandler = require('express-async-handler');
 
 roteador.get('/', async (req, res) => {
     const usuarios = await TabelaUsuarios.listar();
@@ -8,6 +10,26 @@ roteador.get('/', async (req, res) => {
         JSON.stringify(usuarios)
     );
 });
+
+roteador.post('/signin', expressAsyncHandler(async(req,res) =>{
+    const email = req.body.email;
+    const user = await Usuario.buscaPorEmail({email});
+    if(user){
+        if(compareSync(req.body.password, user.password)){
+            res.send({
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                isAdmin: user.isAdmin,
+                token: generateToken(user),
+            });
+            return;
+            }
+        }
+        res.status(401).send({ message: 'E-mail ou Senha Invalido(os)!'});
+    })
+
+);
 
 roteador.post('/register', async (req,res) => {
     const dadosRecebidos = req.body
@@ -17,5 +39,8 @@ roteador.post('/register', async (req,res) => {
         JSON.stringify(usuario)
     )
 });
+
+
+
 
 module.exports = roteador;
