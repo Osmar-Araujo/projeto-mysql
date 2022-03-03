@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from "../actions/cartActions";
+import {registerAddress} from "../actions/enderecoActions";
 import CheckoutSteps from "../components/checkoutSteps/CheckoutSteps";
 //import { useForm } from 'react-hook-form';
 
@@ -26,7 +27,7 @@ export default function ShippingAddressScreen(props) {
         dispatch(saveShippingAddress({ fullName, address, city, postalCode, state, numero, bairro }));
         props.history.push('/payment');
         const idUsuario = userInfo.id;
-        alert(idUsuario);
+        console.log(apelido, idUsuario, address, city, postalCode, state, numero, bairro);
         dispatch(registerAddress(apelido, idUsuario, address, city, postalCode, state, numero, bairro));
     }
 
@@ -40,7 +41,7 @@ export default function ShippingAddressScreen(props) {
         console.log(data);
       setValue('address', data.logradouro);
       setValue('city', data.city);
-      setValue('postalCode', data.cep);
+      setValue('postalCode', data.cep);apelido, idUsuario, address, city, postalCode, state, numero, bairro
       setValue('state', data.uf);
       setFocus('numero')
       });

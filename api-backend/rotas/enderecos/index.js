@@ -1,5 +1,4 @@
 
-const TabelaEndereco = require('./TabelaEndereco');
 const roteador = require ('express').Router();
 const Endereco = require('./Endereco.js');
 

@@ -2,11 +2,12 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv');
-
+const cors = require('cors');
 
 dotenv.config();
-
 app.use(bodyParser.json());
+
+app.use(cors());
 
 const roteador = require("./rotas/produtos");
 app.use("/api/products", roteador);
