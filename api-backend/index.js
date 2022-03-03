@@ -14,4 +14,7 @@ app.use("/api/products", roteador);
 const roteadorUsu = require("./rotas/usuarios");
 app.use("/api/usuarios", roteadorUsu);
 
+const roteadorEnd = require("./rotas/enderecos");
+app.use("/api/enderecos", roteadorEnd);
+
 app.listen(5000, () => console.log("API em pé!!"));

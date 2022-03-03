@@ -13,6 +13,7 @@ export default function ShippingAddressScreen(props) {
         props.history.push('/signin');
     };
     const [fullName, setFullName] = useState(shippingAddress.fullName);
+    const [apelido, setApelido] = useState(shippingAddress.apelido);
     const [address, setAddress] = useState(shippingAddress.address);
     const [city, setCity] = useState(shippingAddress.city);
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
@@ -24,6 +25,9 @@ export default function ShippingAddressScreen(props) {
         e.preventDefault();
         dispatch(saveShippingAddress({ fullName, address, city, postalCode, state, numero, bairro }));
         props.history.push('/payment');
+        const idUsuario = userInfo.id;
+        alert(idUsuario);
+        dispatch(registerAddress(apelido, idUsuario, address, city, postalCode, state, numero, bairro));
     }
 
     /*
@@ -58,6 +62,16 @@ export default function ShippingAddressScreen(props) {
             placeholder="Entre com seu nome completo"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)} required
+          />
+        </div>
+        <div>
+          <label htmlFor="apelido">Maneira de identificar o endereço</label>
+          <input
+            type="text"
+            id="apelido"
+            placeholder="Ex: Minha casa, Casa da minha mãe, Casa da sogra, etc..."
+            value={apelido}
+            onChange={(e) => setApelido(e.target.value)} required
           />
         </div>
         <div>

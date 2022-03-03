@@ -70,6 +70,7 @@ export default function RegisterScreen(props) {
             id="genero"
             required
             onChange={(e) => setGenero(e.target.value)}>
+            <option value=" ">Selecione</option>
             <option value="Masculino">Masculino</option>
             <option value="Feminino">Feminino</option>
           </select>
@@ -90,6 +91,7 @@ export default function RegisterScreen(props) {
             id="tipoTel"  
             required
             onChange={(e) => setTipoTel(e.target.value)}>
+            <option value=" ">Selecione</option>
             <option value="Celular">Celular</option>
           <option value="Residencial">Residencial</option>
             <option value="Comercial">Comercial</option>
