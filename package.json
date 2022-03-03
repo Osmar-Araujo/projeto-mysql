@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node api-backend/index.js",
-    "dev":"nodemon api-backend/index.js"
+    "dev": "nodemon api-backend/index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "config": "^3.3.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.2.0",
