@@ -4,8 +4,9 @@ const bodyParser = require("body-parser");
 const dotenv = require('dotenv');
 
 dotenv.config();
-
 app.use(bodyParser.json());
+
+app.use(cors());
 
 const roteador = require("./rotas/produtos");
 app.use("/api/products", roteador);
