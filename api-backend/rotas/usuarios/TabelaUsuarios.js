@@ -1,23 +1,23 @@
 const Modelo = require('./ModeloTabelaUsuarios')
 
 module.exports = {
-    listar (){
+    listar() {
         return Modelo.findAll()
     },
 
-    inserir (usuario){
+    inserir(usuario) {
         return Modelo.create(usuario)
     },
 
-    async buscaPorEmail (email){
+    async buscaPorEmail(email) {
         const encontrado = await Modelo.findOne({
             where: {
-                email:email
+                email: email
             }
         })
 
-        if (!encontrado){
-            throw new Error ('E-mail fornecido inválido!')
+        if (!encontrado) {
+            throw new Error('E-mail fornecido inválido!')
         }
         console.log(encontrado)
         return encontrado;
