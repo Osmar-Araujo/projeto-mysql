@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node api-backend/index.js",
-    "dev":"nodemon api-backend/index.js"
+    "dev": "nodemon api-backend/index.js"
   },
   "keywords": [],
   "author": "",

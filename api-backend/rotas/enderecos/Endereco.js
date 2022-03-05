@@ -1,5 +1,7 @@
-class Endereco{
-    constructor({ id, apelido, idUsuario, address, city, postalCode, state, numero, bairro}){
+const TabelaEndereco = require('./TabelaEndereco');
+
+class Endereco {
+    constructor({ id, apelido, idUsuario, address, city, postalCode, state, numero, bairro }) {
         this.id = id
         this.apelido = apelido
         this.idUsuario = idUsuario
@@ -11,7 +13,7 @@ class Endereco{
         this.bairro = bairro
     }
 
-    async criar(){
+    async criar() {
         const resultado = await TabelaEndereco.inserir({
             apelido: this.apelido,
             idUsuario: this.idUsuario,
@@ -25,3 +27,6 @@ class Endereco{
         this.id = resultado.id
     }
 }
+
+
+module.exports = Endereco;
