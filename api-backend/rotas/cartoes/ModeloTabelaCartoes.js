@@ -26,7 +26,7 @@ const colunas = {
     type: Sequelize.STRING,
     allowNull: false
   },
-  Cvc: {
+  cvc: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
@@ -39,7 +39,7 @@ const colunas = {
 
 const opcoes = {
   freezeTableName: true,
-  tableName: 'paymentCards',
+  tableName: 'cartoes',
 }
 
-module.exports = instancia.define('paymentCards', colunas, opcoes);
+module.exports = instancia.define('cartoes', colunas, opcoes);

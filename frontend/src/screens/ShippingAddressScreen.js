@@ -28,11 +28,11 @@ export default function ShippingAddressScreen(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    dispatch(saveShippingAddress({ fullName, address, city, postalCode, state, numero, bairro }));
-    props.history.push('/payment');
     const idUsuario = userInfo.id;
-    alert(idUsuario);
+
+    dispatch(saveShippingAddress({ apelido, fullName, idUsuario, address, city, postalCode, state, numero, bairro }));
+    props.history.push('/payment');
+
 
     dispatch(registerAddress(apelido, idUsuario, address, city, postalCode, state, numero, bairro));
   }

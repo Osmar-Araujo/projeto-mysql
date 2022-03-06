@@ -8,10 +8,12 @@ export default function PlaceOrderScreen(props) {
   if (!cart.paymentMethod) {
     props.history.push("/payment");
   }
+  /*
   const toPrice = (num) => Number(num.toFixed(2));
-  cart.itemsPrice = toPrice(cart.itemsPrice.reduce((a,c) => a + c.qty*c.price, 0));
+  cart.itemsPrice = toPrice(cart.itemsPrice.reduce((a, c) => a + c.qty * c.price, 0));
   cart.shippingAddress = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
   cart.totalPrice = cart.itemsPrice + cart.shippingAddress;
+  */
   return (
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -24,8 +26,10 @@ export default function PlaceOrderScreen(props) {
                 <p>
                   <strong>Nome: </strong>
                   {cart.shippingAddress.fullName} <br />
+                  <strong>Apelido: </strong>
+                  {cart.shippingAddress.apelido}
                   <strong>Endereço: </strong>
-                  {cart.shippingAddress.address},{cart.shippingAddress.city},{" "}
+                  {cart.shippingAddress.address},{cart.shippingAddress.numero},{cart.shippingAddress.city},{" "}
                   {cart.shippingAddress.postalCode},{cart.shippingAddress.state}
                 </p>
               </div>
@@ -34,8 +38,12 @@ export default function PlaceOrderScreen(props) {
               <div className="card card-body">
                 <h2>Pagamento</h2>
                 <p>
-                  <strong>Metodo de Pagamento: </strong>
-                  {cart.paymentMethod} <br />
+                  <strong>Noma do Titular: </strong>
+                  {cart.paymentMethod.cardHolderName} <br />
+                </p>
+                <p>
+                  <strong>Número do Cartão: </strong>
+                  {cart.paymentMethod.number} <br />
                 </p>
               </div>
             </li>

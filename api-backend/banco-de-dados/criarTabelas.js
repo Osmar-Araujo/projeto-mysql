@@ -10,4 +10,4 @@ ModeloTabelaUsu.sync().then(() => console.log('Tabela de usuários criada com su
 
 ModeloTabelaEnd.sync().then(() => console.log('Tabela de endereços criada com sucesso!')).catch(console.log);
 
-ModeloTabelaCart.sync().then(() => console.log('Tabela de cartões criach(console.log);da com sucesso!')).cat
+ModeloTabelaCart.sync().then(() => console.log('Tabela de cartões criada com sucesso!')).catch(console.log);

@@ -15,4 +15,7 @@ app.use("/api/usuarios", roteadorUsu);
 const roteadorEnd = require("./rotas/enderecos");
 app.use("/api/enderecos", roteadorEnd);
 
+const roteadorPayCard = require("./rotas/cartoes");
+app.use("/api/cartoes", roteadorPayCard);
+
 app.listen(5000, () => console.log("API em pé!!"));

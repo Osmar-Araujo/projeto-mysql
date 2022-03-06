@@ -1,12 +1,12 @@
 const TabelaCartoes = require('./TabelaCartoes');
 
 class Cartao {
-  constructor({ id, idUsuario, number, cardHolderName, Cvc, dueData }) {
+  constructor({ id, idUsuario, number, cardHolderName, cvc, dueData }) {
     this.id = id,
       this.idUsuario = idUsuario,
       this.number = number,
       this.cardHolderName = cardHolderName,
-      this.Cvc = Cvc,
+      this.cvc = cvc,
       this.dueData = dueData
   }
 
@@ -15,7 +15,7 @@ class Cartao {
       idUsuario: this.idUsuario,
       number: this.number,
       cardHolderName: this.cardHolderName,
-      Cvc: this.Cvc,
+      cvc: this.cvc,
       dueData: this.dueData
     })
     this.id = resultado.id
