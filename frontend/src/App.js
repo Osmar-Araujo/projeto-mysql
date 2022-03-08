@@ -9,6 +9,7 @@ import ProductScreen from './screens/ProductScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
 import SigninScreen from './screens/SigninScreen';
+import UserManagerScreen from './screens/UserManagerScreen';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
     const dispatch = useDispatch();
     const signoutHandler = () => {
         dispatch(signout());
+
     }
     return (
         <BrowserRouter>
@@ -44,10 +46,17 @@ function App() {
                                     {userInfo.name} <i className="fa fa-caret-down"></i>
                                 </Link>
                                 <ul className="dropdown-content">
-                                    <Link to="#signout" onClick={signoutHandler}>
-                                        Sair
-                                    </Link>
-                                </ul>
+                                    <li>
+                                        <Link to="#signout" onClick={signoutHandler}>
+                                            Sair
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to ="/usuarios">
+                                            Minha Conta
+                                        </Link>
+                                    </li>
+                                </ul>                             
                             </div>
                         ) : (
                             <Link to="/signin">Login</Link>
@@ -55,6 +64,7 @@ function App() {
                     </div>
                 </header>
                 <main>
+                    <Route path="/usuarios" component={UserManagerScreen}exact></Route>
                     <Route path="/cart/:id?" component={CartScreen}></Route>
                     <Route path="/product/:id" component={ProductScreen}></Route>
                     <Route path="/signin" component={SigninScreen}></Route>

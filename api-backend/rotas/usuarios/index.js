@@ -11,6 +11,13 @@ roteador.get('/', async (req, res) => {
     );
 });
 
+roteador.get('/:id', async (req,res) =>{
+    const usuario = await TabelaUsuarios.buscaPorId();
+    res.send(JSON.stringify(usuario)
+    );
+});
+
+
 roteador.post('/signin', expressAsyncHandler(async (req, res) => {
     const email = req.body.email;
     const user = await TabelaUsuarios.buscaPorEmail(email);
@@ -39,6 +46,12 @@ roteador.post('/register', async (req, res) => {
     )
 });
 
+roteador.get('detalhes/:id', async (req,res)=>{
+    const usuario = await TabelaUsuarios.detalhes();
+    res.send(
+        JSON.stringify(usuario)
+    );
+} )
 
 
 

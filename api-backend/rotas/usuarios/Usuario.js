@@ -1,5 +1,8 @@
 //const bcrypt = require ('bcryptjs');
+
+
 const TabelaUsuarios = require('./TabelaUsuarios');
+
 
 class Usuario{
     constructor({id, name, dtNasc, genero, cpf, tipoTel, tel, email, password, isAdmin}){
