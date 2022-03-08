@@ -2,7 +2,7 @@
     "mysql": {
         "banco-de-dados": "les",
         "usuario": "root",
-        "senha": "N3T0ix1",
+        "senha": "root",
         "host": "127.0.0.1"
     }
 }
