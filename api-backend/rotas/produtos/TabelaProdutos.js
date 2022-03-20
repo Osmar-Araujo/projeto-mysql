@@ -19,7 +19,6 @@ module.exports = {
         if (!encontrado){
             throw new Error ('Ops!! Produto não encontrado!!')
         }
-        console.log(encontrado)
         return encontrado;
     }
 }

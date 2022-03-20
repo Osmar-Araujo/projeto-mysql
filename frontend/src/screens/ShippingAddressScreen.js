@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from "../actions/cartActions";
 import { registerAddress } from "../actions/enderecoActions";
 import CheckoutSteps from "../components/checkoutSteps/CheckoutSteps";
-//import { useForm } from 'react-hook-form';
 
 export default function ShippingAddressScreen(props) {
   const userSignin = useSelector((state) => state.userSignin);
@@ -32,7 +31,6 @@ export default function ShippingAddressScreen(props) {
 
     dispatch(saveShippingAddress({ apelido, fullName, idUsuario, address, city, postalCode, state, numero, bairro }));
     props.history.push('/payment');
-
 
     dispatch(registerAddress(apelido, idUsuario, address, city, postalCode, state, numero, bairro));
   }

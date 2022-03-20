@@ -9,6 +9,7 @@ export const registerPayCard = (idUsuario, number, cardHolderName, cvc, dueData)
       idUsuario, number, cardHolderName, cvc, dueData
     });
     dispatch({ type: PAYCARD_REGISTER_SUCCESS, payload: data });
+    localStorage.setItem("payCardInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: PAYCARD_REGISTER_FAIL,

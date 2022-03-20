@@ -46,12 +46,6 @@ roteador.post('/register', async (req, res) => {
     )
 });
 
-roteador.get('detalhes/:id', async (req,res)=>{
-    const usuario = await TabelaUsuarios.detalhes();
-    res.send(
-        JSON.stringify(usuario)
-    );
-} )
 
 
 

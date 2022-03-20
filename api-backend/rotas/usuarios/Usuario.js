@@ -18,6 +18,8 @@ class Usuario{
         this.isAdmin = isAdmin
     }
 
+    
+
     async criar(){
         const resultado = await TabelaUsuarios.inserir({
             name: this.name,

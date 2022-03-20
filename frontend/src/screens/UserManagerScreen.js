@@ -1,54 +1,81 @@
-import React ,{useState, useEffect} from "react"
-import axios from "axios";
+
+import React, { useState ,useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import {enderecosUsuario} from '../actions/enderecoActions'
 
 
 export default function UserManagerScreen(props){
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
+    const dispatch = useDispatch();
+    
 
-        const [data, setData] = useState([])
-        const [detalhes, setDetalhes] = useState([]);
-      
-          useEffect(() => {axios.get("http://localhost:5000/api/usuarios").then((res) => {
-              setData(res.data);
-              console.log(data);
-          });
-        },[]);
+    useEffect( () => {
+      dispatch(enderecosUsuario(userInfo.id))
+    },[dispatch])
+    //const placeorder = useSelector(state => state.placeorder);
+    //const { card } = placeorder;
 
-        const detalhesHandler = (id)=>{
-            axios.get("http://localhost:5000/api/usuarios/detalhes/:id").then((res) => {
-                setDetalhes(res.data);
-                console.log(data);
-            })
-        }
-
-    return(
-          
+    return(  
         <div>
-            <h1>Tela de gerenciamento de usuários</h1>
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            data.map((user) =>{
-                                return(
-                                <tr key={user.id}>
-                                    <td> {user.id}</td>
-                                    <td>{user.name}</td>
-                                    <button onClick={detalhesHandler}>Detalhes</button>
-                                    <button>Inativar</button>
-                                </tr>
-                            )})
-                        }
-                            
-                    </tbody>
-                </table>
-            </div>
-        </div>
+            <h1>Gerenciamento da Conta</h1>
+        <div className="row top">
+        <div className="col-2">
+          <ul>
+            <li>
+              <div className="card card-body">
+                <h2>Dados Pessoais</h2>
+                <p>{userInfo.id}</p>
+                <p>
+                  <strong>Nome: </strong>
+                  {userInfo.name}
+                </p>
+                <p>
+                  <strong>Data de nascimento: </strong>
+                  {userInfo.dtNasc}
+                </p>
+                <p>
+                  <strong> Gênero: </strong>
+                  {userInfo.genero}
+                </p>
+                <p>
+                  <strong> CPF: </strong>
+                  {userInfo.cpf}
+                </p>
+                <p>
+                  <strong> Tipo de Telefone: </strong>
+                  {userInfo.tipoTel}
+                </p>
+                <p>
+                  <strong> Telefone: </strong>
+                  {userInfo.tel}
+                </p>
+                <p>
+                  <strong> E-mail: </strong>
+                  {userInfo.email}
+                </p>
+                <button>Editar Perfil</button>
+              </div>
+            </li>
+        </ul>
+    </div>
+    </div>
+    <div className="row top">
+        <div className="col-2">
+          <ul>
+            <li>
+              <div className="card card-body">
+                <h2>Endereços Cadastrados</h2>
+                <p >
+                  <strong>Apelido: </strong>
+                  {}
+                </p>
+                <button>Editar Perfil</button>
+              </div>
+            </li>
+        </ul>
+    </div>
+    </div>
+    </div>
     )
 }

@@ -1,4 +1,5 @@
 const TabelaEndereco = require('./TabelaEndereco');
+const Usuario = require('../usuarios/Usuario');
 
 class Endereco {
     constructor({ id, apelido, idUsuario, address, city, postalCode, state, numero, bairro }) {
@@ -26,6 +27,7 @@ class Endereco {
         })
         this.id = resultado.id
     }
+    
 }
 
 
